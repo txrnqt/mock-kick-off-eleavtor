@@ -11,15 +11,18 @@ public class ElevatorReal implements ElevatorIO {
     public final DigitalInput limitSwitch = new DigitalInput(1);
     public final Counter counter = new Counter(limitSwitch);
 
+    // sets both motors to follow each other
     public ElevatorReal() {
         leftMotor.getPosition();
         EleMotor.setControl(new Follower(2, false));
     }
 
+    // checks if elevator is down
     public boolean ElevatorDown() {
         return counter.get() > 1;
     }
 
+    // sets the power or the motor itself
     public void setMotorPower(double power) {
         EleMotor.set(power);
     }

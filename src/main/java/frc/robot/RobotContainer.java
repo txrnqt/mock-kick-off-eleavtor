@@ -57,7 +57,7 @@ public class RobotContainer {
      * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
-        driver.y().whileTrue(elevator.ElevatorUpOne());
+        elevator.setDefaultCommand(elevator.ElevatorContollerMan(driver));
     }
 
     /**
