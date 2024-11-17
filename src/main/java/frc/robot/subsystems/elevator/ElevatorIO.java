@@ -13,4 +13,8 @@ public interface ElevatorIO {
     public default void setMotorPrecentage(double precent) {}
 
     public default void updateInputs(ElevatorIOInput inputs) {}
+
+    public default boolean ElevatorDown() {
+        return ElevatorDown();
+    }
 }

@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class Elevator extends SubsystemBase {
     private ElevatorIO io;
 
-
     public Elevator(ElevatorIO io) {
         this.io = io;
     }
@@ -19,8 +18,16 @@ public class Elevator extends SubsystemBase {
         setMotorPower(1);
     }
 
+    public boolean isDown() {
+        return io.ElevatorDown();
+    }
+
     public Command ElevatorUpOne() {
-        return startEnd(() -> ElevatorUp(), () -> setMotorPower(0));
+        return startEnd(() -> ElevatorUp(), () -> setMotorPower(0)).withTimeout(3.0);
+    }
+
+    public Command ElevatorHome() {
+        return run(() -> setMotorPower(-1).until(isDown()));
     }
 
 }

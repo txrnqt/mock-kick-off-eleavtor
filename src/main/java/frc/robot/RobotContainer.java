@@ -1,6 +1,5 @@
 package frc.robot;
 
-import javax.swing.text.html.parser.Element;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -10,9 +9,6 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Robot.RobotRunType;
-import frc.robot.subsystems.drive.Drivetrain;
-import frc.robot.subsystems.drive.DrivetrainIO;
-import frc.robot.subsystems.drive.DrivetrainReal;
 import frc.robot.subsystems.elevator.Elevator;
 import frc.robot.subsystems.elevator.ElevatorIO;
 import frc.robot.subsystems.elevator.ElevatorReal;
@@ -62,7 +58,7 @@ public class RobotContainer {
      */
     private void configureButtonBindings() {
         driver.y().whileTrue(elevator.ElevatorUpOne());
-    }/885
+    }
 
     /**
      * Gets the user's selected autonomous command.
