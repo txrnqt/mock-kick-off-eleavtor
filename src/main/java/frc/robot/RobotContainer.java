@@ -1,5 +1,6 @@
 package frc.robot;
 
+import javax.swing.text.html.parser.Element;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -12,6 +13,9 @@ import frc.robot.Robot.RobotRunType;
 import frc.robot.subsystems.drive.Drivetrain;
 import frc.robot.subsystems.drive.DrivetrainIO;
 import frc.robot.subsystems.drive.DrivetrainReal;
+import frc.robot.subsystems.elevator.Elevator;
+import frc.robot.subsystems.elevator.ElevatorIO;
+import frc.robot.subsystems.elevator.ElevatorReal;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -28,7 +32,7 @@ public class RobotContainer {
     private final SendableChooser<String> autoChooser = new SendableChooser<>();
 
     /* Subsystems */
-    private Drivetrain drivetrain;
+    private Elevator elevator;
 
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -38,13 +42,13 @@ public class RobotContainer {
         autoChooser.setDefaultOption("Wait 1 Second", "wait");
         switch (runtimeType) {
             case kReal:
-                drivetrain = new Drivetrain(new DrivetrainReal());
+                elevator = new Elevator(new ElevatorReal() {});
                 break;
             case kSimulation:
                 // drivetrain = new Drivetrain(new DrivetrainSim() {});
                 break;
             default:
-                drivetrain = new Drivetrain(new DrivetrainIO() {});
+                elevator = new Elevator(new ElevatorIO() {});
         }
         // Configure the button bindings
         configureButtonBindings();
@@ -56,7 +60,9 @@ public class RobotContainer {
      * ({@link edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
      * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
-    private void configureButtonBindings() {}
+    private void configureButtonBindings() {
+        driver.y().whileTrue(elevator.ElevatorUpOne());
+    }/885
 
     /**
      * Gets the user's selected autonomous command.
