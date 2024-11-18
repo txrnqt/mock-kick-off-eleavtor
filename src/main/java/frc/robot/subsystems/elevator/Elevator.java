@@ -30,7 +30,8 @@ public class Elevator extends SubsystemBase {
 
     // brings elevator to home
     public Command ElevatorHome() {
-        return run(() -> setMotorPower(-1).until(isDown()));
+        Command checkHome = 
+        return run(() -> setMotorPower(-1).untill, () -> setMotorPower(0));
     }
 
 }

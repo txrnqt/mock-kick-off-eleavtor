@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 public class ElevatorReal implements ElevatorIO {
-    public final TalonFX EleMotor = new TalonFX(1);
+    public final TalonFX rightMotor = new TalonFX(1);
     public final TalonFX leftMotor = new TalonFX(2);
     public final DigitalInput limitSwitch = new DigitalInput(1);
     public final Counter counter = new Counter(limitSwitch);
@@ -14,7 +14,7 @@ public class ElevatorReal implements ElevatorIO {
     // sets both motors to follow each other
     public ElevatorReal() {
         leftMotor.getPosition();
-        EleMotor.setControl(new Follower(2, false));
+        rightMotor.setControl(new Follower(2, false));
     }
 
     // checks if elevator is down
@@ -24,7 +24,7 @@ public class ElevatorReal implements ElevatorIO {
 
     // sets the power or the motor itself
     public void setMotorPower(double power) {
-        EleMotor.set(power);
+        rightMotor.set(power);
     }
 
 
